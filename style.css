@@ -13,6 +13,10 @@ Text Domain: Avada
     overflow-y: auto;
 }
 
+.fusion-header {
+    height: 109px;
+}
+
 .portfolio-slider {
     display: flex;
     /* overflow: hidden; */
@@ -64,21 +68,16 @@ Text Domain: Avada
     transform: translateY(-50%);
     z-index: 1000;
     display: block;
-  }
-  
-  .slick-prev {
-    left: -50px !important;
-  }
-  
-  .slick-next {
-    right: -10px;
-  }
-  
-  .slick-prev:hover, .slick-next:hover {
-    /* background-color: #000; */
-  }
-  
-  .slick-disabled {
-    display: none !important; /* Hide the button if disabled (e.g., at the end of the slides) */
-  }
-  
+}
+
+.slick-prev {
+left: -50px !important;
+}
+
+.slick-next {
+right: -10px;
+}
+
+.slick-disabled {
+display: none !important; /* Hide the button if disabled (e.g., at the end of the slides) */
+}
