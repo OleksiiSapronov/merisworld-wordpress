@@ -14,7 +14,7 @@ jQuery(document).ready(function ($) {
     nextArrow: '<button class="slick-next">Next</button>',
     prevArrow: '<button class="slick-prev">Prev</button>',
     adaptiveHeight: true, // Adjust the height based on content
-    speed: 2000, // Set the transition speed between slides
+    speed: 500, // Set the transition speed between slides
     responsive: [
       {
         breakpoint: 1440,
