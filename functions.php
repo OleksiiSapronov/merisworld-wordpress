@@ -14,7 +14,16 @@ add_action( 'after_setup_theme', 'avada_lang_setup' );
 
 function portfolio_category_slider() {
     // Get the portfolio categories
-    $categories = get_terms('portfolio_category');
+    $temp_categories = get_terms('portfolio_category');
+
+    // Sort the categories by slug
+    usort($temp_categories, function($a, $b) {
+        return strcmp($a->slug, $b->slug);
+    });
+
+    // Assign sorted array to $categories
+    $categories = $temp_categories;
+
     if (!empty($categories) && !is_wp_error($categories)) {
         ob_start();
         ?>
