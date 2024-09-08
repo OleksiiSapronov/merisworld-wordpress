@@ -4,6 +4,7 @@ jQuery(document).ready(function ($) {
 
   // Initialize Slick Slider
   $(".portfolio-slider").slick({
+    infinite: false, // Prevent infinite looping to avoid malfunctioning
     draggable: false, // Disable dragging functionality
     slidesToShow: 4, // Display one slide at a time
     slidesToScroll: 1, // Scroll one slide at a time
@@ -12,9 +13,8 @@ jQuery(document).ready(function ($) {
     arrows: true, // Enable arrows
     nextArrow: '<button class="slick-next">Next</button>',
     prevArrow: '<button class="slick-prev">Prev</button>',
-    infinite: false, // Prevent infinite looping to avoid malfunctioning
     adaptiveHeight: true, // Adjust the height based on content
-    speed: 500, // Set the transition speed between slides
+    speed: 2000, // Set the transition speed between slides
     responsive: [
       {
         breakpoint: 1024,
