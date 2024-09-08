@@ -20,15 +20,17 @@ Text Domain: Avada
 }
 
 .portfolio-slide {
-
+    background-color: transparent;
     background-size: cover;
     overflow-y: auto;
     scrollbar-width: none;
     padding: 50px 35px 20px 20px;
     text-align: center;
     transition: all 0.5s ease-in-out;
+    line-height: 1.2;
     cursor: pointer;
-    height: 470px;
+    width: 300px !important;  /* Static width */
+    height: 470px !important; /* Static height */
 }
 
 .category-info {
@@ -46,6 +48,10 @@ Text Domain: Avada
 
 .fusion-flex-container .fusion-row .fusion-flex-column {
     margin: 0px;
+}
+
+.fusion-widget-area {
+    display: none;
 }
 
 .slick-prev, .slick-next {

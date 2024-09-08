@@ -54,25 +54,25 @@ function portfolio_category_slider() {
                     ),
                 ));
                 ?>
-                <div class="portfolio-slide" data-category-id="<?php echo esc_attr($category->term_id); ?>" style="background-image: url('<?php echo esc_url($image_url); ?>'); line-height: 1.2;">
-                <?php
-                    // Decode the serialized _fusion array
-                    $fusion_data = maybe_unserialize(get_term_meta($category->term_id, '_fusion', true));
+                <div class="portfolio-slide" data-category-id="<?php echo esc_attr($category->term_id); ?>" style="background-image: url('<?php echo esc_url($image_url); ?>');">
+                    <?php
+                        // Decode the serialized _fusion array
+                        $fusion_data = maybe_unserialize(get_term_meta($category->term_id, '_fusion', true));
 
-                    // Check if page_title_bg exists and retrieve the URL
-                    if (!empty($fusion_data) && isset($fusion_data['page_title_bg']['url'])) {
-                        $page_title_bg_url = esc_url($fusion_data['page_title_bg']['url']);
-                    } else {
-                        $page_title_bg_url = ''; // Fallback in case no image is found
-                    }
-                ?>
+                        // Check if page_title_bg exists and retrieve the URL
+                        if (!empty($fusion_data) && isset($fusion_data['page_title_bg']['url'])) {
+                            $page_title_bg_url = esc_url($fusion_data['page_title_bg']['url']);
+                        } else {
+                            $page_title_bg_url = ''; // Fallback in case no image is found
+                        }
+                    ?>
 
-                <div class="category-info" data-category-id="<?php echo esc_attr($category->term_id); ?>">
-                    <?php if ($page_title_bg_url) : ?>
-                        <img src="<?php echo $page_title_bg_url; ?>" alt="<?php echo esc_attr($category->name); ?>" style="width:50%; height:auto; margin: auto;">
-                    <?php endif; ?>
-                    <p style="margin-top: 20px;"><?php echo esc_html($category->description); ?></p>
-                </div>
+                    <div class="category-info" data-category-id="<?php echo esc_attr($category->term_id); ?>">
+                        <?php if ($page_title_bg_url) : ?>
+                            <img src="<?php echo $page_title_bg_url; ?>" alt="<?php echo esc_attr($category->name); ?>" style="width:50%; height:auto; margin: auto;">
+                        <?php endif; ?>
+                        <p style="margin-top: 20px;"><?php echo esc_html($category->description); ?></p>
+                    </div>
                     
                     <div class="portfolio-info" data-category-id="<?php echo esc_attr($category->term_id); ?>" style="display: none;">
                     <?php if ($portfolios->have_posts()) : ?>
