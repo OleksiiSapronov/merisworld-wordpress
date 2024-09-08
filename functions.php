@@ -98,7 +98,7 @@ function portfolio_category_slider() {
                                     </script>
                                 <?php endif; ?>
                                 
-                                <p style="font-family: 'Anonymous Pro'; font-size: 10px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'port_title', true); ?><span> (<?php echo get_post_meta(get_the_ID(), 'port_subtitle', true); ?>)</span></p>
+                                <p style="font-family: 'Anonymous Pro'; font-size: 12px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'port_title', true); ?><span> (<?php echo get_post_meta(get_the_ID(), 'port_subtitle', true); ?>)</span></p>
                                 <p style="font-family: 'Anonymous Pro'; font-size: 10px;"><?php echo get_post_meta(get_the_ID(), 'port_description1', true); ?></p>
                                 <p style="font-family: 'Anonymous Pro'; font-size: 10px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'port_description2', true); ?></p>
                             </div>
