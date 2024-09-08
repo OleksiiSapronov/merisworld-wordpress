@@ -2,7 +2,7 @@
 
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
-    wp_enqueue_style( 'monaco-font', 'https://fonts.googleapis.com/css2?family=monaco:wght@400;700&display=swap', [], null );
+    wp_enqueue_style( 'monaco-font', 'https://fonts.googleapis.com/css?family=Monaco', [], null );
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles', 20 );
 
