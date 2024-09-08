@@ -2,7 +2,7 @@
 
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
-    wp_enqueue_style( 'monaco-font', 'https://fonts.googleapis.com/css?family=Monaco', [], null );
+    wp_enqueue_style( 'Anonymous Pro-font', 'https://fonts.googleapis.com/css2?family=Anonymous+Pro', [], null );
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles', 20 );
 
@@ -71,7 +71,7 @@ function portfolio_category_slider() {
                         <?php if ($page_title_bg_url) : ?>
                             <img src="<?php echo $page_title_bg_url; ?>" alt="<?php echo esc_attr($category->name); ?>" style="width:50%; height:auto; margin: auto;">
                         <?php endif; ?>
-                        <p style="margin-top: 20px;"><?php echo esc_html($category->description); ?></p>
+                        <p style="margin-top: 20px; font-family: 'Anonymous Pro'; font-size: 14px;"><?php echo esc_html($category->description); ?></p>
                     </div>
                     
                     <div class="portfolio-info" data-category-id="<?php echo esc_attr($category->term_id); ?>" style="display: none;">
@@ -98,9 +98,9 @@ function portfolio_category_slider() {
                                     </script>
                                 <?php endif; ?>
                                 
-                                <p style="font-family: 'monaco'; font-size: 12px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'port_title', true); ?><span> (<?php echo get_post_meta(get_the_ID(), 'port_subtitle', true); ?>)</span></p>
-                                <p style="font-family: 'monaco'; font-size: 12px;"><?php echo get_post_meta(get_the_ID(), 'port_description1', true); ?></p>
-                                <p style="font-family: 'monaco'; font-size: 12px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'port_description2', true); ?></p>
+                                <p style="font-family: 'Anonymous Pro'; font-size: 10px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'port_title', true); ?><span> (<?php echo get_post_meta(get_the_ID(), 'port_subtitle', true); ?>)</span></p>
+                                <p style="font-family: 'Anonymous Pro'; font-size: 10px;"><?php echo get_post_meta(get_the_ID(), 'port_description1', true); ?></p>
+                                <p style="font-family: 'Anonymous Pro'; font-size: 10px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'port_description2', true); ?></p>
                             </div>
                         <?php endwhile; ?>
                     <?php endif; ?>

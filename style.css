@@ -54,6 +54,30 @@ Text Domain: Avada
     display: none;
 }
 
+.fusion-header {
+    height: 100px !important;
+}
+
+.fusion-header-has-flyout-menu-content {
+    height: 100%;
+}
+
+.fusion-row {
+    height: 100%;
+}
+
+.fusion-logo {
+    margin: auto !important;
+}
+
+.fusion-flyout-menu-icons {
+    display: none !important;
+}
+
+.fusion-header-sticky-height {
+    height: 100px;
+}
+
 .slick-prev, .slick-next {
     padding: 10px;
     cursor: pointer;
