@@ -33,19 +33,6 @@ Text Domain: Avada
     /* max-width: 280px !important; */
 }
 
-.category-info {
-    margin-top: 70%;
-    padding: 20px;
-}
-
-.portfolio-info {
-    display: none;
-}
-
-.portfolio-item {
-    display: none;
-}
-
 .fusion-flex-container .fusion-row .fusion-flex-column {
     margin: 0px;
 }

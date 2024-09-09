@@ -67,44 +67,43 @@ function portfolio_category_slider() {
                             $page_title_bg_url = ''; // Fallback in case no image is found
                         }
                     ?>
-
-                    <div class="category-info" data-category-id="<?php echo esc_attr($category->term_id); ?>">
-                        <?php if ($page_title_bg_url) : ?>
-                            <img src="<?php echo $page_title_bg_url; ?>" alt="<?php echo esc_attr($category->name); ?>" style="width:50%; height:auto; margin: auto;">
-                        <?php endif; ?>
-                        <p style="margin-top: 20px; font-family: 'Anonymous Pro'; font-size: 14px;"><?php echo esc_html($category->description); ?></p>
-                    </div>
                     
-                    <div class="portfolio-info" data-category-id="<?php echo esc_attr($category->term_id); ?>" style="display: none;">
-                    <?php if ($portfolios->have_posts()) : ?>
-                        <?php while ($portfolios->have_posts()) : $portfolios->the_post(); ?>
-                            <div class="portfolio-item" style="display: none;">
-                                <!-- Fetch and display the featured image URL -->
-                                <?php $featured_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>
-                                <?php if ($featured_image_url): ?>
-                                    <img src="<?php echo esc_url($featured_image_url); ?>" alt="<?php the_title(); ?>" style="margin: auto; margin-bottom: 15px;" class="dynamic-img"/>
-                                    <script>
-                                        document.addEventListener("DOMContentLoaded", function() {
-                                            const images = document.querySelectorAll('.dynamic-img');
+                    <div class="portfolio-info" data-category-id="<?php echo esc_attr($category->term_id); ?>">
+                        <div class="portfolio-item" data-category-id="<?php echo esc_attr($category->term_id); ?>" style="margin-top: 70%; padding: 20px;">
+                            <?php if ($page_title_bg_url) : ?>
+                                <img src="<?php echo $page_title_bg_url; ?>" alt="<?php echo esc_attr($category->name); ?>" style="width:50%; height:auto; margin: auto;">
+                            <?php endif; ?>
+                            <p style="margin-top: 20px; font-family: 'Anonymous Pro'; font-size: 14px;"><?php echo esc_html($category->description); ?></p>
+                        </div>
+                        <?php if ($portfolios->have_posts()) : ?>
+                            <?php while ($portfolios->have_posts()) : $portfolios->the_post(); ?>
+                                <div class="portfolio-item" style="display: none;">
+                                    <!-- Fetch and display the featured image URL -->
+                                    <?php $featured_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>
+                                    <?php if ($featured_image_url): ?>
+                                        <img src="<?php echo esc_url($featured_image_url); ?>" alt="<?php the_title(); ?>" style="margin: auto; margin-bottom: 15px;" class="dynamic-img"/>
+                                        <script>
+                                            document.addEventListener("DOMContentLoaded", function() {
+                                                const images = document.querySelectorAll('.dynamic-img');
 
-                                            images.forEach(img => {
-                                                if (img.naturalWidth > img.naturalHeight) {
-                                                    img.style.width = '80%';
-                                                } else {
-                                                    img.style.width = '60%';
-                                                }
+                                                images.forEach(img => {
+                                                    if (img.naturalWidth > img.naturalHeight) {
+                                                        img.style.width = '80%';
+                                                    } else {
+                                                        img.style.width = '60%';
+                                                    }
 
+                                                });
                                             });
-                                        });
-                                    </script>
-                                <?php endif; ?>
-                                
-                                <p style="font-family: 'Anonymous Pro'; font-size: 12px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'port_title', true); ?><span> (<?php echo get_post_meta(get_the_ID(), 'port_subtitle', true); ?>)</span></p>
-                                <p style="font-family: 'Anonymous Pro'; font-size: 10px;"><?php echo get_post_meta(get_the_ID(), 'port_description1', true); ?></p>
-                                <p style="font-family: 'Anonymous Pro'; font-size: 10px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'port_description2', true); ?></p>
-                            </div>
-                        <?php endwhile; ?>
-                    <?php endif; ?>
+                                        </script>
+                                    <?php endif; ?>
+                                    
+                                    <p style="font-family: 'Anonymous Pro'; font-size: 12px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'port_title', true); ?><span> (<?php echo get_post_meta(get_the_ID(), 'port_subtitle', true); ?>)</span></p>
+                                    <p style="font-family: 'Anonymous Pro'; font-size: 10px;"><?php echo get_post_meta(get_the_ID(), 'port_description1', true); ?></p>
+                                    <p style="font-family: 'Anonymous Pro'; font-size: 10px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'port_description2', true); ?></p>
+                                </div>
+                            <?php endwhile; ?>
+                        <?php endif; ?>
                     </div>
                     </div>
                 </div>

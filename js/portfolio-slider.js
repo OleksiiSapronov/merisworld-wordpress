@@ -60,7 +60,6 @@ jQuery(document).ready(function ($) {
   $(".portfolio-slide").on("mouseup touchend", function (e) {
     if (!isDragging) {
       // Toggle between category info and portfolio info
-      $(this).find(".category-info").toggle();
       $(this).find(".portfolio-info").toggle();
     }
   });
@@ -92,20 +91,16 @@ jQuery(document).ready(function ($) {
     } else {
       var $currentSlide = $(this);
       var categoryId = $currentSlide.data("category-id");
-      var $categoryInfo = $currentSlide.find(".category-info");
       var $portfolioInfo = $(
         '.portfolio-info[data-category-id="' + categoryId + '"]'
       );
-
-      // Hide category-info
-      $categoryInfo.hide();
 
       // Show the portfolio-info section for the clicked slide
       $portfolioInfo.show();
 
       // Initialize the index if not already set
       if (!categoryIndices.hasOwnProperty(categoryId)) {
-        categoryIndices[categoryId] = 0;
+        categoryIndices[categoryId] = 1;
       }
 
       // Show the next portfolio item in rotation
