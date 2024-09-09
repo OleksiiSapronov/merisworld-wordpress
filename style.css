@@ -9,7 +9,6 @@ Text Domain: Avada
 */
 
 #main {
-    /* height: calc(100vh - 224px) !important; */
     overflow-y: auto;
 }
 
@@ -24,13 +23,11 @@ Text Domain: Avada
     background-size: cover;
     overflow-y: auto;
     scrollbar-width: none;
-    /* padding: 3% 2.5% 2% 1.2%; */
     text-align: center;
     transition: all 0.5s ease-in-out;
     line-height: 1.2;
     cursor: pointer;
     aspect-ratio: 2 / 3.1;
-    /* max-width: 280px !important; */
 }
 
 .fusion-flex-container .fusion-row .fusion-flex-column {
@@ -90,8 +87,3 @@ right: -10px;
 .slick-disabled {
 display: none !important;
 }
-
-/* .fusion-builder-row {
-    max-width: 100% !important;
-    max-height: 100% !important;
-} */
