@@ -34,7 +34,7 @@ Text Domain: Avada
 }
 
 .category-info {
-    margin-top: 50%;
+    margin-top: 70%;
     padding: 20px;
 }
 
@@ -93,7 +93,7 @@ Text Domain: Avada
 }
 
 .slick-prev {
-left: -50px !important;
+left: -40px !important;
 }
 
 .slick-next {
