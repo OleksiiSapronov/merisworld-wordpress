@@ -78,6 +78,10 @@ Text Domain: Avada
     height: 100px;
 }
 
+.fusion-logo-link img {
+    height: 100px !important;
+}
+
 .slick-prev, .slick-next {
     padding: 10px;
     cursor: pointer;
