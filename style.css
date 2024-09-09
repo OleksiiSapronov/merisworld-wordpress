@@ -24,13 +24,13 @@ Text Domain: Avada
     background-size: cover;
     overflow-y: auto;
     scrollbar-width: none;
-    padding: 50px 35px 20px 20px;
+    /* padding: 3% 2.5% 2% 1.2%; */
     text-align: center;
     transition: all 0.5s ease-in-out;
     line-height: 1.2;
     cursor: pointer;
-    width: 300px !important;  /* Static width */
-    height: 470px !important; /* Static height */
+    aspect-ratio: 2 / 3.1;
+    /* max-width: 280px !important; */
 }
 
 .category-info {

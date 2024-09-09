@@ -55,6 +55,7 @@ function portfolio_category_slider() {
                 ));
                 ?>
                 <div class="portfolio-slide" data-category-id="<?php echo esc_attr($category->term_id); ?>" style="background-image: url('<?php echo esc_url($image_url); ?>');">
+                    <div style="margin: 15% 15.5% 0% 10%;">
                     <?php
                         // Decode the serialized _fusion array
                         $fusion_data = maybe_unserialize(get_term_meta($category->term_id, '_fusion', true));
@@ -104,6 +105,7 @@ function portfolio_category_slider() {
                             </div>
                         <?php endwhile; ?>
                     <?php endif; ?>
+                    </div>
                     </div>
                 </div>
             <?php endforeach; ?>
