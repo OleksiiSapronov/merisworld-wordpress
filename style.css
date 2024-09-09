@@ -21,8 +21,6 @@ Text Domain: Avada
 .portfolio-slide {
     background-color: transparent;
     background-size: cover;
-    overflow-y: auto;
-    scrollbar-width: none;
     text-align: center;
     transition: all 0.5s ease-in-out;
     line-height: 1.2;

@@ -55,7 +55,8 @@ function portfolio_category_slider() {
                 ));
                 ?>
                 <div class="portfolio-slide" data-category-id="<?php echo esc_attr($category->term_id); ?>" style="background-image: url('<?php echo esc_url($image_url); ?>');">
-                    <div style="margin: 15% 15.5% 0% 10%;">
+                    <div style="padding: 14% 12.5% 11% 7%; height: 100%">
+                    <div style="height: 100%; overflow: scroll;">
                     <?php
                         // Decode the serialized _fusion array
                         $fusion_data = maybe_unserialize(get_term_meta($category->term_id, '_fusion', true));
@@ -69,7 +70,7 @@ function portfolio_category_slider() {
                     ?>
                     
                     <div class="portfolio-info" data-category-id="<?php echo esc_attr($category->term_id); ?>">
-                        <div class="portfolio-item" data-category-id="<?php echo esc_attr($category->term_id); ?>" style="margin-top: 70%; padding: 20px;">
+                        <div class="portfolio-item" data-category-id="<?php echo esc_attr($category->term_id); ?>" style="margin-top: 55%; padding: 20px;">
                             <?php if ($page_title_bg_url) : ?>
                                 <img src="<?php echo $page_title_bg_url; ?>" alt="<?php echo esc_attr($category->name); ?>" style="width:50%; height:auto; margin: auto;">
                             <?php endif; ?>
@@ -104,6 +105,7 @@ function portfolio_category_slider() {
                                 </div>
                             <?php endwhile; ?>
                         <?php endif; ?>
+                    </div>
                     </div>
                     </div>
                 </div>
