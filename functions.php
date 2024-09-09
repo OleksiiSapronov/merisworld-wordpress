@@ -1,7 +1,6 @@
 <?php
 
 function theme_enqueue_styles() {
-    wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
     wp_enqueue_style( 'Anonymous Pro-font', 'https://fonts.googleapis.com/css2?family=Anonymous+Pro', [], null );
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles', 20 );
@@ -127,5 +126,6 @@ function custom_portfolio_slider_scripts() {
 
     // Enqueue custom slider script and styles
     wp_enqueue_script('portfolio-slider-js', get_stylesheet_directory_uri() . '/js/portfolio-slider.js', array('jquery', 'slick-slider-js'), null, true);
+    wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
 }
 add_action('wp_enqueue_scripts', 'custom_portfolio_slider_scripts');

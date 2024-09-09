@@ -107,4 +107,8 @@ jQuery(document).ready(function ($) {
       showNextPortfolioItem($portfolioInfo, categoryIndices[categoryId]);
     }
   });
+
+  $(window).resize(function () {
+    $(".portfolio-slider")[0].slick.refresh();
+  });
 });
