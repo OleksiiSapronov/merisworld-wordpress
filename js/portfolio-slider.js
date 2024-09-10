@@ -96,7 +96,7 @@ jQuery(document).ready(function ($) {
     let slideWidth;
     if (viewportWidth > viewportHeight && viewportWidth <= 1024)
       slideWidth = viewportHeight * 0.6 * aspectRatio;
-    else slideWidth = viewportHeight * 0.8 * aspectRatio;
+    else slideWidth = viewportHeight * 0.7 * aspectRatio;
 
     // Number of slides that can fit on the screen in landscape mode
     let slidesToShow = Math.floor(viewportWidth / slideWidth);
