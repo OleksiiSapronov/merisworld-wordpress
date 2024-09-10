@@ -69,11 +69,11 @@ function portfolio_category_slider() {
                     ?>
                     
                     <div class="portfolio-info" data-category-id="<?php echo esc_attr($category->term_id); ?>">
-                        <div class="portfolio-item" data-category-id="<?php echo esc_attr($category->term_id); ?>" style="margin-top: 50%; padding: 20px;">
+                        <div class="portfolio-item" data-category-id="<?php echo esc_attr($category->term_id); ?>" style="margin-top: 40%; padding: 10px;">
                             <?php if ($page_title_bg_url) : ?>
                                 <img src="<?php echo $page_title_bg_url; ?>" alt="<?php echo esc_attr($category->name); ?>" style="width:80%; height:auto; margin: auto;">
                             <?php endif; ?>
-                            <p style="margin-top: 20px; font-family: 'Anonymous Pro'; font-size: 14px;"><?php echo esc_html($category->description); ?></p>
+                            <p class="cate_desc_font" style="font-family: 'Anonymous Pro'; font-size: 14px;"><?php echo esc_html($category->description); ?></p>
                         </div>
                         <?php if ($portfolios->have_posts()) : ?>
                             <?php while ($portfolios->have_posts()) : $portfolios->the_post(); ?>
@@ -98,9 +98,9 @@ function portfolio_category_slider() {
                                         </script>
                                     <?php endif; ?>
                                     
-                                    <p style="font-family: 'Anonymous Pro'; font-size: 12px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'port_title', true); ?><span> (<?php echo get_post_meta(get_the_ID(), 'port_subtitle', true); ?>)</span></p>
-                                    <p style="font-family: 'Anonymous Pro'; font-size: 10px;"><?php echo get_post_meta(get_the_ID(), 'port_description1', true); ?></p>
-                                    <p style="font-family: 'Anonymous Pro'; font-size: 10px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'port_description2', true); ?></p>
+                                    <p class="port_title_font" style="font-family: 'Anonymous Pro'; font-size: 12px; font-weight: bold; margin-bottom: 10px;"><?php echo get_post_meta(get_the_ID(), 'port_title', true); ?><span> (<?php echo get_post_meta(get_the_ID(), 'port_subtitle', true); ?>)</span></p>
+                                    <p class="port_desc1_font" style="font-family: 'Anonymous Pro'; font-size: 10px;"><?php echo get_post_meta(get_the_ID(), 'port_description1', true); ?></p>
+                                    <p class="port_desc2_font" style="font-family: 'Anonymous Pro'; font-size: 10px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'port_description2', true); ?></p>
                                 </div>
                             <?php endwhile; ?>
                         <?php endif; ?>

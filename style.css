@@ -120,4 +120,8 @@ Text Domain: Avada
     .fusion-logo-link img {
         height: 50px !important;
     }
+
+    .cate_desc_font{
+        font-size: 12px !important;
+    }
 }
