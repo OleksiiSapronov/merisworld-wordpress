@@ -1,12 +1,12 @@
 jQuery(document).ready(function ($) {
   let isDragging = false;
   let startX, startY;
+  var categoryIndices = {};
 
   // Initialize Slick Slider
   $(".portfolio-slider").slick({
     infinite: false, // Prevent infinite looping to avoid malfunctioning
     draggable: false, // Disable dragging functionality
-    slidesToShow: 4, // Display one slide at a time
     slidesToScroll: 1, // Scroll one slide at a time
     autoplay: false,
     dots: true, // Enable dots for easier navigation
@@ -15,36 +15,6 @@ jQuery(document).ready(function ($) {
     prevArrow: '<button class="slick-prev">Prev</button>',
     adaptiveHeight: true, // Adjust the height based on content
     speed: 500, // Set the transition speed between slides
-    responsive: [
-      {
-        breakpoint: 1440,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 450,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
   });
 
   // Detect the start of dragging
@@ -71,8 +41,7 @@ jQuery(document).ready(function ($) {
     }
   });
 
-  var categoryIndices = {};
-
+  // Function to rotate through portfolio items
   function showNextPortfolioItem($container, index) {
     var $items = $container.find(".portfolio-item");
     if ($items.length === 0) return;
@@ -90,7 +59,8 @@ jQuery(document).ready(function ($) {
     categoryIndices[$container.data("category-id")] =
       (currentIndex + 1) % totalItems;
   }
-  // Prevent default behavior on drag
+
+  // Handle click on the portfolio slide
   $(".portfolio-slide").on("click", function (e) {
     if (isDragging) {
       e.preventDefault();
@@ -115,7 +85,43 @@ jQuery(document).ready(function ($) {
     }
   });
 
-  $(window).resize(function () {
+  // Function to dynamically update slides only for mobile landscape
+  function updateSlideDimensions() {
+    const viewportHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
+    console.log(viewportHeight);
+    console.log(viewportWidth);
+
+    const aspectRatio = 2 / 3.1; // Adjust based on desired aspect ratio
+    let slideWidth;
+    if (viewportWidth > viewportHeight && viewportWidth <= 1024)
+      slideWidth = viewportHeight * 0.6 * aspectRatio;
+    else slideWidth = viewportHeight * 0.8 * aspectRatio;
+
+    // Number of slides that can fit on the screen in landscape mode
+    let slidesToShow = Math.floor(viewportWidth / slideWidth);
+    console.log(slidesToShow);
+
+    if (slidesToShow < 1) slidesToShow = 1; // At least 1 slide should be shown
+    if (slidesToShow > 5) slidesToShow = 5;
+    // Update Slick Slider options dynamically
+    $(".portfolio-slider").slick(
+      "slickSetOption",
+      {
+        slidesToShow: slidesToShow,
+        slidesToScroll: 1,
+        adaptiveHeight: true,
+      },
+      true
+    );
+  }
+
+  // Update slide dimensions and reinitialize on window resize
+  $(window).on("resize", function () {
+    updateSlideDimensions();
     $(".portfolio-slider")[0].slick.refresh();
   });
+
+  // Run on load
+  // updateSlideDimensions();
 });

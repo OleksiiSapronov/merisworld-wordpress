@@ -69,9 +69,9 @@ function portfolio_category_slider() {
                     ?>
                     
                     <div class="portfolio-info" data-category-id="<?php echo esc_attr($category->term_id); ?>">
-                        <div class="portfolio-item" data-category-id="<?php echo esc_attr($category->term_id); ?>" style="margin-top: 55%; padding: 20px;">
+                        <div class="portfolio-item" data-category-id="<?php echo esc_attr($category->term_id); ?>" style="margin-top: 50%; padding: 20px;">
                             <?php if ($page_title_bg_url) : ?>
-                                <img src="<?php echo $page_title_bg_url; ?>" alt="<?php echo esc_attr($category->name); ?>" style="width:50%; height:auto; margin: auto;">
+                                <img src="<?php echo $page_title_bg_url; ?>" alt="<?php echo esc_attr($category->name); ?>" style="width:80%; height:auto; margin: auto;">
                             <?php endif; ?>
                             <p style="margin-top: 20px; font-family: 'Anonymous Pro'; font-size: 14px;"><?php echo esc_html($category->description); ?></p>
                         </div>

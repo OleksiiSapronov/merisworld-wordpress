@@ -1,15 +1,6 @@
-/*
-Theme Name: Avada Child
-Description: Child theme for Avada theme
-Author: ThemeFusion
-Author URI: https://theme-fusion.com
-Template: Avada
-Version: 1.0.0
-Text Domain: Avada
-*/
-
 #main {
     overflow-y: auto;
+    padding: 30px !important;
 }
 
 .portfolio-slider {
@@ -25,7 +16,7 @@ Text Domain: Avada
     transition: all 0.5s ease-in-out;
     line-height: 1.2;
     cursor: pointer;
-    aspect-ratio: 2 / 3.1;
+    aspect-ratio: 2 / 3.1; /* Aspect ratio maintained */
 }
 
 .fusion-flex-container .fusion-row .fusion-flex-column {
@@ -60,6 +51,7 @@ Text Domain: Avada
     height: 100px !important;
 }
 
+/* Slick arrows */
 .slick-prev, .slick-next {
     padding: 10px;
     cursor: pointer;
@@ -71,13 +63,32 @@ Text Domain: Avada
 }
 
 .slick-prev {
-left: -40px !important;
+    left: -40px !important;
 }
 
 .slick-next {
-right: -10px;
+    right: -10px;
 }
 
 .slick-disabled {
-display: none !important;
+    display: none !important;
+}
+
+/* Landscape mode for mobile phones */
+@media only screen and (max-width: 1024px) and (orientation: landscape) {
+    .portfolio-slide {
+        width: auto; /* Width dynamically calculated in JavaScript */
+    }
+
+    .fusion-header {
+        height: 50px !important;
+    }
+
+    .fusion-header-sticky-height {
+        height: 50px !important;
+    }
+    
+    .fusion-logo-link img {
+        height: 50px !important;
+    }
 }
