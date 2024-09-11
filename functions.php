@@ -108,11 +108,24 @@ function portfolio_category_slider() {
                                             });
                                         </script>
                                     <?php endif; ?>
+                                    <?php
+                                        // Get the link field (which is an array containing url, title, and target)
+                                        $link = get_field('custom_title'); // Assuming 'custom_title' is the field name for the ACF link
 
-                                    <p style="font-family: 'Anonymous Pro'; font-size: 12px; font-weight: bold; margin-bottom: 10px;">
-                                        <?php echo get_post_meta(get_the_ID(), 'custom_title', true); ?>
-                                        <span>(<?php echo get_post_meta(get_the_ID(), 'custom_subtitle', true); ?>)</span>
-                                    </p>
+                                        if ($link) : 
+                                            // Extract the link components
+                                            $url = $link['url'];
+                                            $title = $link['title']; // This will be used as the link text
+                                            $target = $link['target'] ? $link['target'] : '_self'; // Defaults to '_self' if no target is set
+                                            $custom_subtitle = get_field('custom_subtitle'); // Assuming you still have the subtitle field
+                                        ?>
+                                        <p style="font-family: 'Anonymous Pro'; font-size: 12px; font-weight: bold; margin-bottom: 10px;">
+                                            <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>" style="text-decoration: underline; color: #198fd9;"><?php echo esc_html($title); ?></a>
+                                            <?php if ($custom_subtitle) : ?>
+                                                <span>(<?php echo esc_html($custom_subtitle); ?>)</span>
+                                            <?php endif; ?>
+                                        </p>
+                                        <?php endif; ?>
                                     <p style="font-family: 'Anonymous Pro'; font-size: 10px;"><?php echo get_post_meta(get_the_ID(), 'custom_description1', true); ?></p>
                                     <p style="font-family: 'Anonymous Pro'; font-size: 10px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'custom_description2', true); ?></p>
                                 </div>
