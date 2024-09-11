@@ -87,13 +87,13 @@ function portfolio_category_slider() {
                                     // Check if there is a video URL
                                     if (!empty($featured_video_url)): ?>
                                         <!-- Display video player -->
-                                        <video controls autoplay muted loop style="width: 80%; margin: auto; margin-bottom: 15px;">
+                                        <video controls autoplay muted loop style="width: 80%; margin: auto; margin-bottom: 10px;">
                                             <source src="<?php echo esc_url($featured_video_url); ?>" type="video/mp4">
                                             Your browser does not support the video tag.
                                         </video>
                                     <?php elseif (!empty($featured_image_url)): ?>
                                         <!-- If no video, display the featured image -->
-                                        <img src="<?php echo esc_url($featured_image_url); ?>" alt="<?php the_title(); ?>" style="margin: auto; margin-bottom: 15px;" class="dynamic-img"/>
+                                        <img src="<?php echo esc_url($featured_image_url); ?>" alt="<?php the_title(); ?>" style="margin: auto; margin-bottom: 10px;" class="dynamic-img"/>
                                         <script>
                                             document.addEventListener("DOMContentLoaded", function() {
                                                 const images = document.querySelectorAll('.dynamic-img');
@@ -126,8 +126,8 @@ function portfolio_category_slider() {
                                             <?php endif; ?>
                                         </p>
                                         <?php endif; ?>
-                                    <p style="font-family: 'Anonymous Pro'; font-size: 10px;"><?php echo get_post_meta(get_the_ID(), 'custom_description1', true); ?></p>
-                                    <p style="font-family: 'Anonymous Pro'; font-size: 10px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'custom_description2', true); ?></p>
+                                    <p style="font-family: 'Anonymous Pro'; font-size: 10px; margin-bottom: 10px;"><?php echo get_post_meta(get_the_ID(), 'custom_description1', true); ?></p>
+                                    <p style="font-family: 'Anonymous Pro'; font-size: 10px; font-weight: bold; margin-bottom: 10px;"><?php echo get_post_meta(get_the_ID(), 'custom_description2', true); ?></p>
                                 </div>
                             <?php endwhile; ?>
                         <?php endif; ?>
