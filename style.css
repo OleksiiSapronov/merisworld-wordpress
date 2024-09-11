@@ -103,6 +103,10 @@ Text Domain: Avada
     display: none !important;
 }
 
+div.fusion-modal-content * {
+    font-family: 'Anonymous Pro' !important;
+}
+
 /* Landscape mode for mobile phones */
 @media only screen and (max-width: 1024px) and (orientation: landscape) {
     .portfolio-slide {
