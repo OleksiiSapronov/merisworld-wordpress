@@ -78,9 +78,21 @@ function portfolio_category_slider() {
                         <?php if ($portfolios->have_posts()) : ?>
                             <?php while ($portfolios->have_posts()) : $portfolios->the_post(); ?>
                                 <div class="portfolio-item" style="display: none;">
-                                    <!-- Fetch and display the featured image URL -->
-                                    <?php $featured_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>
-                                    <?php if ($featured_image_url): ?>
+                                    <?php 
+                                    // Fetch the video URL from a custom field (assuming 'featured_video' is the meta key for the video)
+                                    $featured_video_id = get_post_meta(get_the_ID(), 'featured_video', true);
+                                    $featured_video_url = wp_get_attachment_url($featured_video_id);
+                                    $featured_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+
+                                    // Check if there is a video URL
+                                    if (!empty($featured_video_url)): ?>
+                                        <!-- Display video player -->
+                                        <video controls autoplay muted loop style="width: 80%; margin: auto; margin-bottom: 15px;">
+                                            <source src="<?php echo esc_url($featured_video_url); ?>" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    <?php elseif (!empty($featured_image_url)): ?>
+                                        <!-- If no video, display the featured image -->
                                         <img src="<?php echo esc_url($featured_image_url); ?>" alt="<?php the_title(); ?>" style="margin: auto; margin-bottom: 15px;" class="dynamic-img"/>
                                         <script>
                                             document.addEventListener("DOMContentLoaded", function() {
@@ -92,13 +104,15 @@ function portfolio_category_slider() {
                                                     } else {
                                                         img.style.width = '60%';
                                                     }
-
                                                 });
                                             });
                                         </script>
                                     <?php endif; ?>
-                                    
-                                    <p class="port_title_font" style="font-family: 'Anonymous Pro'; font-size: 12px; font-weight: bold; margin-bottom: 10px;"><?php echo get_post_meta(get_the_ID(), 'port_title', true); ?><span> (<?php echo get_post_meta(get_the_ID(), 'port_subtitle', true); ?>)</span></p>
+
+                                    <p class="port_title_font" style="font-family: 'Anonymous Pro'; font-size: 12px; font-weight: bold; margin-bottom: 10px;">
+                                        <?php echo get_post_meta(get_the_ID(), 'port_title', true); ?>
+                                        <span>(<?php echo get_post_meta(get_the_ID(), 'port_subtitle', true); ?>)</span>
+                                    </p>
                                     <p class="port_desc1_font" style="font-family: 'Anonymous Pro'; font-size: 10px;"><?php echo get_post_meta(get_the_ID(), 'port_description1', true); ?></p>
                                     <p class="port_desc2_font" style="font-family: 'Anonymous Pro'; font-size: 10px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'port_description2', true); ?></p>
                                 </div>
