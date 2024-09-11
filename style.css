@@ -25,7 +25,6 @@ Text Domain: Avada
     text-align: center;
     transition: all 0.5s ease-in-out;
     line-height: 1.2;
-    cursor: pointer;
     aspect-ratio: 2 / 3.1; /* Aspect ratio maintained */
 }
 
