@@ -109,12 +109,12 @@ function portfolio_category_slider() {
                                         </script>
                                     <?php endif; ?>
 
-                                    <p class="port_title_font" style="font-family: 'Anonymous Pro'; font-size: 12px; font-weight: bold; margin-bottom: 10px;">
-                                        <?php echo get_post_meta(get_the_ID(), 'port_title', true); ?>
-                                        <span>(<?php echo get_post_meta(get_the_ID(), 'port_subtitle', true); ?>)</span>
+                                    <p style="font-family: 'Anonymous Pro'; font-size: 12px; font-weight: bold; margin-bottom: 10px;">
+                                        <?php echo get_post_meta(get_the_ID(), 'custom_title', true); ?>
+                                        <span>(<?php echo get_post_meta(get_the_ID(), 'custom_subtitle', true); ?>)</span>
                                     </p>
-                                    <p class="port_desc1_font" style="font-family: 'Anonymous Pro'; font-size: 10px;"><?php echo get_post_meta(get_the_ID(), 'port_description1', true); ?></p>
-                                    <p class="port_desc2_font" style="font-family: 'Anonymous Pro'; font-size: 10px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'port_description2', true); ?></p>
+                                    <p style="font-family: 'Anonymous Pro'; font-size: 10px;"><?php echo get_post_meta(get_the_ID(), 'custom_description1', true); ?></p>
+                                    <p style="font-family: 'Anonymous Pro'; font-size: 10px; font-weight: bold;"><?php echo get_post_meta(get_the_ID(), 'custom_description2', true); ?></p>
                                 </div>
                             <?php endwhile; ?>
                         <?php endif; ?>
