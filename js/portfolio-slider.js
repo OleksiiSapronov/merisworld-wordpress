@@ -92,9 +92,15 @@ jQuery(document).ready(function ($) {
 
     const aspectRatio = 2 / 3.1; // Adjust based on desired aspect ratio
     let slideWidth;
-    if (viewportWidth > viewportHeight && viewportWidth <= 1024)
+    if (viewportWidth > viewportHeight && viewportWidth <= 1024) {
       slideWidth = viewportHeight * 0.6 * aspectRatio;
-    else slideWidth = viewportHeight * 0.7 * aspectRatio;
+      document.getElementById("main").style.height =
+        viewportHeight - 50 - 47 + "px";
+    } else {
+      slideWidth = viewportHeight * aspectRatio;
+      document.getElementById("main").style.height =
+        viewportHeight - 100 - 47 + "px";
+    }
 
     // Number of slides that can fit on the screen in landscape mode
     let slidesToShow = Math.floor(viewportWidth / slideWidth);

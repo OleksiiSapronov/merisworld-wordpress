@@ -7,6 +7,9 @@ Template: Avada
 Version: 1.0.0
 Text Domain: Avada
 */
+html {
+    scrollbar-width: none;
+}
 
 #main {
     overflow-y: auto;
@@ -125,6 +128,14 @@ Text Domain: Avada
 
 div.fusion-modal-content * {
     font-family: 'Anonymous Pro' !important;
+}
+
+.fusion-social-network-icon {
+    margin: 10px !important;
+}
+
+.fusion-social-networks {
+    margin: 0 !important;
 }
 
 /* Landscape mode for mobile phones */

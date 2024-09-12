@@ -73,7 +73,7 @@ function portfolio_category_slider() {
                                     <?php if ($page_title_bg_url) : ?>
                                         <img src="<?php echo $page_title_bg_url; ?>" alt="<?php echo esc_attr($category->name); ?>" style="width:80%; height:auto; margin: auto;">
                                     <?php endif; ?>
-                                    <p class="cate_desc_font" style="font-family: 'Anonymous Pro'; font-size: 14px;"><?php echo esc_html($category->description); ?></p>
+                                    <p class="cate_desc_font" style="font-family: 'Anonymous Pro'; font-size: 18px;"><?php echo esc_html($category->description); ?></p>
                                 </div>
                                 <?php if ($portfolios->have_posts()) : ?>
                                     <?php while ($portfolios->have_posts()) : $portfolios->the_post(); ?>
@@ -119,15 +119,15 @@ function portfolio_category_slider() {
                                                     $target = $link['target'] ? $link['target'] : '_self'; // Defaults to '_self' if no target is set
                                                     $custom_subtitle = get_field('custom_subtitle'); // Assuming you still have the subtitle field
                                                 ?>
-                                                <p style="font-family: 'Anonymous Pro'; font-size: 12px; font-weight: bold; margin-bottom: 10px;">
+                                                <p style="font-family: 'Anonymous Pro'; font-size: 16px; font-weight: bold; margin-bottom: 10px;">
                                                     <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>" style="text-decoration: underline; color: #198fd9;"><?php echo esc_html($title); ?></a>
                                                     <?php if ($custom_subtitle) : ?>
                                                         <span>(<?php echo esc_html($custom_subtitle); ?>)</span>
                                                     <?php endif; ?>
                                                 </p>
                                                 <?php endif; ?>
-                                            <p style="font-family: 'Anonymous Pro'; font-size: 10px; margin-bottom: 10px;"><?php echo get_post_meta(get_the_ID(), 'custom_description1', true); ?></p>
-                                            <p style="font-family: 'Anonymous Pro'; font-size: 10px; font-weight: bold; margin-bottom: 10px;"><?php echo get_post_meta(get_the_ID(), 'custom_description2', true); ?></p>
+                                            <p style="font-family: 'Anonymous Pro'; font-size: 14px; margin-bottom: 10px;"><?php echo get_post_meta(get_the_ID(), 'custom_description1', true); ?></p>
+                                            <p style="font-family: 'Anonymous Pro'; font-size: 14px; font-weight: bold; margin-bottom: 10px;"><?php echo get_post_meta(get_the_ID(), 'custom_description2', true); ?></p>
                                         </div>
                                     <?php endwhile; ?>
                                 <?php endif; ?>
