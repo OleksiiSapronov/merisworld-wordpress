@@ -89,8 +89,6 @@ jQuery(document).ready(function ($) {
   function updateSlideDimensions() {
     const viewportHeight = window.innerHeight;
     const viewportWidth = window.innerWidth;
-    console.log(viewportHeight);
-    console.log(viewportWidth);
 
     const aspectRatio = 2 / 3.1; // Adjust based on desired aspect ratio
     let slideWidth;
@@ -100,7 +98,6 @@ jQuery(document).ready(function ($) {
 
     // Number of slides that can fit on the screen in landscape mode
     let slidesToShow = Math.floor(viewportWidth / slideWidth);
-    console.log(slidesToShow);
 
     if (slidesToShow < 1) slidesToShow = 1; // At least 1 slide should be shown
     if (slidesToShow > 5) slidesToShow = 5;
@@ -116,12 +113,53 @@ jQuery(document).ready(function ($) {
     );
   }
 
+  // Function to generate a random number between min and max (inclusive)
+  function getRandomRotation(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  // Function to create 3 background divs for each target div and rotate them
+  function resizeBackgroundDivsForAllTargets() {
+    const targetDiv = document.querySelector(".target-div"); // Select all target divs
+    // Get the width and height of the current target div
+
+    const targetWidth = targetDiv.offsetWidth;
+    const targetHeight = targetDiv.offsetHeight;
+
+    const backgroundDivs = document.querySelectorAll(".background-div"); // Select all target divs
+
+    backgroundDivs.forEach((backgroundDiv) => {
+      // Set the width and height to match the target div
+      backgroundDiv.style.width = `${targetWidth}px`;
+      backgroundDiv.style.height = `${targetHeight}px`;
+    });
+  }
+
+  function initialBackgroundDivsForAllTargets() {
+    const targetDivs = document.querySelectorAll(".target-div"); // Select all target divs
+
+    targetDivs.forEach((targetDiv) => {
+      for (let i = 0; i < 3; i++) {
+        // Create a new div element
+        const backgroundDiv = document.createElement("div");
+        backgroundDiv.classList.add("background-div");
+
+        // Random rotation between -5 and +5 degrees
+        const randomRotation = getRandomRotation(-5, 5);
+        backgroundDiv.style.transform = `rotate(${randomRotation}deg)`;
+
+        // Append the new background div before the current target div
+        targetDiv.parentNode.insertBefore(backgroundDiv, targetDiv);
+      }
+    });
+  }
+
+  initialBackgroundDivsForAllTargets();
+
   // Update slide dimensions and reinitialize on window resize
   $(window).on("resize", function () {
     updateSlideDimensions();
     $(".portfolio-slider")[0].slick.refresh();
+    resizeBackgroundDivsForAllTargets();
   });
-
-  // Run on load
-  // updateSlideDimensions();
 });

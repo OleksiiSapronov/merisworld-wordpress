@@ -53,86 +53,86 @@ function portfolio_category_slider() {
                     ),
                 ));
                 ?>
-                <div class="portfolio-slide" data-category-id="<?php echo esc_attr($category->term_id); ?>" style="background-image: url('<?php echo esc_url($image_url); ?>');">
-                    <div style="padding: 14% 12.5% 11% 7%; height: 100%">
-                    <div style="height: 100%; overflow: auto; scrollbar-width: none;">
-                    <?php
-                        // Decode the serialized _fusion array
-                        $fusion_data = maybe_unserialize(get_term_meta($category->term_id, '_fusion', true));
+                <div class="portfolio-slide" data-category-id="<?php echo esc_attr($category->term_id); ?>">
+                    <div class="target-div">
+                        <div style="height: 100%; overflow: auto; scrollbar-width: none;">
+                            <?php
+                                // Decode the serialized _fusion array
+                                $fusion_data = maybe_unserialize(get_term_meta($category->term_id, '_fusion', true));
 
-                        // Check if page_title_bg exists and retrieve the URL
-                        if (!empty($fusion_data) && isset($fusion_data['page_title_bg']['url'])) {
-                            $page_title_bg_url = esc_url($fusion_data['page_title_bg']['url']);
-                        } else {
-                            $page_title_bg_url = ''; // Fallback in case no image is found
-                        }
-                    ?>
-                    
-                    <div class="portfolio-info" data-category-id="<?php echo esc_attr($category->term_id); ?>">
-                        <div class="portfolio-item" data-category-id="<?php echo esc_attr($category->term_id); ?>" style="margin-top: 40%; padding: 10px;">
-                            <?php if ($page_title_bg_url) : ?>
-                                <img src="<?php echo $page_title_bg_url; ?>" alt="<?php echo esc_attr($category->name); ?>" style="width:80%; height:auto; margin: auto;">
-                            <?php endif; ?>
-                            <p class="cate_desc_font" style="font-family: 'Anonymous Pro'; font-size: 14px;"><?php echo esc_html($category->description); ?></p>
-                        </div>
-                        <?php if ($portfolios->have_posts()) : ?>
-                            <?php while ($portfolios->have_posts()) : $portfolios->the_post(); ?>
-                                <div class="portfolio-item" style="display: none;">
-                                    <?php 
-                                    // Fetch the video URL from a custom field (assuming 'featured_video' is the meta key for the video)
-                                    $featured_video_id = get_post_meta(get_the_ID(), 'featured_video', true);
-                                    $featured_video_url = wp_get_attachment_url($featured_video_id);
-                                    $featured_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
-
-                                    // Check if there is a video URL
-                                    if (!empty($featured_video_url)): ?>
-                                        <!-- Display video player -->
-                                        <video controls autoplay muted loop style="width: 80%; margin: auto; margin-bottom: 10px;">
-                                            <source src="<?php echo esc_url($featured_video_url); ?>" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>
-                                    <?php elseif (!empty($featured_image_url)): ?>
-                                        <!-- If no video, display the featured image -->
-                                        <img src="<?php echo esc_url($featured_image_url); ?>" alt="<?php the_title(); ?>" style="margin: auto; margin-bottom: 10px;" class="dynamic-img"/>
-                                        <script>
-                                            document.addEventListener("DOMContentLoaded", function() {
-                                                const images = document.querySelectorAll('.dynamic-img');
-
-                                                images.forEach(img => {
-                                                    if (img.naturalWidth > img.naturalHeight) {
-                                                        img.style.width = '80%';
-                                                    } else {
-                                                        img.style.width = '60%';
-                                                    }
-                                                });
-                                            });
-                                        </script>
+                                // Check if page_title_bg exists and retrieve the URL
+                                if (!empty($fusion_data) && isset($fusion_data['page_title_bg']['url'])) {
+                                    $page_title_bg_url = esc_url($fusion_data['page_title_bg']['url']);
+                                } else {
+                                    $page_title_bg_url = ''; // Fallback in case no image is found
+                                }
+                            ?>
+                            
+                            <div class="portfolio-info" data-category-id="<?php echo esc_attr($category->term_id); ?>">
+                                <div class="portfolio-item" data-category-id="<?php echo esc_attr($category->term_id); ?>" style="margin-top: 40%; padding: 10px;">
+                                    <?php if ($page_title_bg_url) : ?>
+                                        <img src="<?php echo $page_title_bg_url; ?>" alt="<?php echo esc_attr($category->name); ?>" style="width:80%; height:auto; margin: auto;">
                                     <?php endif; ?>
-                                    <?php
-                                        // Get the link field (which is an array containing url, title, and target)
-                                        $link = get_field('custom_title'); // Assuming 'custom_title' is the field name for the ACF link
-
-                                        if ($link) : 
-                                            // Extract the link components
-                                            $url = $link['url'];
-                                            $title = $link['title']; // This will be used as the link text
-                                            $target = $link['target'] ? $link['target'] : '_self'; // Defaults to '_self' if no target is set
-                                            $custom_subtitle = get_field('custom_subtitle'); // Assuming you still have the subtitle field
-                                        ?>
-                                        <p style="font-family: 'Anonymous Pro'; font-size: 12px; font-weight: bold; margin-bottom: 10px;">
-                                            <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>" style="text-decoration: underline; color: #198fd9;"><?php echo esc_html($title); ?></a>
-                                            <?php if ($custom_subtitle) : ?>
-                                                <span>(<?php echo esc_html($custom_subtitle); ?>)</span>
-                                            <?php endif; ?>
-                                        </p>
-                                        <?php endif; ?>
-                                    <p style="font-family: 'Anonymous Pro'; font-size: 10px; margin-bottom: 10px;"><?php echo get_post_meta(get_the_ID(), 'custom_description1', true); ?></p>
-                                    <p style="font-family: 'Anonymous Pro'; font-size: 10px; font-weight: bold; margin-bottom: 10px;"><?php echo get_post_meta(get_the_ID(), 'custom_description2', true); ?></p>
+                                    <p class="cate_desc_font" style="font-family: 'Anonymous Pro'; font-size: 14px;"><?php echo esc_html($category->description); ?></p>
                                 </div>
-                            <?php endwhile; ?>
-                        <?php endif; ?>
-                    </div>
-                    </div>
+                                <?php if ($portfolios->have_posts()) : ?>
+                                    <?php while ($portfolios->have_posts()) : $portfolios->the_post(); ?>
+                                        <div class="portfolio-item" style="display: none;">
+                                            <?php 
+                                            // Fetch the video URL from a custom field (assuming 'featured_video' is the meta key for the video)
+                                            $featured_video_id = get_post_meta(get_the_ID(), 'featured_video', true);
+                                            $featured_video_url = wp_get_attachment_url($featured_video_id);
+                                            $featured_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+
+                                            // Check if there is a video URL
+                                            if (!empty($featured_video_url)): ?>
+                                                <!-- Display video player -->
+                                                <video controls autoplay muted loop style="width: 80%; margin: auto; margin-bottom: 10px;">
+                                                    <source src="<?php echo esc_url($featured_video_url); ?>" type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                            <?php elseif (!empty($featured_image_url)): ?>
+                                                <!-- If no video, display the featured image -->
+                                                <img src="<?php echo esc_url($featured_image_url); ?>" alt="<?php the_title(); ?>" style="margin: auto; margin-bottom: 10px;" class="dynamic-img"/>
+                                                <script>
+                                                    document.addEventListener("DOMContentLoaded", function() {
+                                                        const images = document.querySelectorAll('.dynamic-img');
+
+                                                        images.forEach(img => {
+                                                            if (img.naturalWidth > img.naturalHeight) {
+                                                                img.style.width = '80%';
+                                                            } else {
+                                                                img.style.width = '60%';
+                                                            }
+                                                        });
+                                                    });
+                                                </script>
+                                            <?php endif; ?>
+                                            <?php
+                                                // Get the link field (which is an array containing url, title, and target)
+                                                $link = get_field('custom_title'); // Assuming 'custom_title' is the field name for the ACF link
+
+                                                if ($link) : 
+                                                    // Extract the link components
+                                                    $url = $link['url'];
+                                                    $title = $link['title']; // This will be used as the link text
+                                                    $target = $link['target'] ? $link['target'] : '_self'; // Defaults to '_self' if no target is set
+                                                    $custom_subtitle = get_field('custom_subtitle'); // Assuming you still have the subtitle field
+                                                ?>
+                                                <p style="font-family: 'Anonymous Pro'; font-size: 12px; font-weight: bold; margin-bottom: 10px;">
+                                                    <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>" style="text-decoration: underline; color: #198fd9;"><?php echo esc_html($title); ?></a>
+                                                    <?php if ($custom_subtitle) : ?>
+                                                        <span>(<?php echo esc_html($custom_subtitle); ?>)</span>
+                                                    <?php endif; ?>
+                                                </p>
+                                                <?php endif; ?>
+                                            <p style="font-family: 'Anonymous Pro'; font-size: 10px; margin-bottom: 10px;"><?php echo get_post_meta(get_the_ID(), 'custom_description1', true); ?></p>
+                                            <p style="font-family: 'Anonymous Pro'; font-size: 10px; font-weight: bold; margin-bottom: 10px;"><?php echo get_post_meta(get_the_ID(), 'custom_description2', true); ?></p>
+                                        </div>
+                                    <?php endwhile; ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             <?php endforeach; ?>
