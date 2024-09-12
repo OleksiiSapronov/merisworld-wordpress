@@ -87,7 +87,7 @@ function portfolio_category_slider() {
                                             // Check if there is a video URL
                                             if (!empty($featured_video_url)): ?>
                                                 <!-- Display video player -->
-                                                <video controls autoplay muted loop style="width: 80%; margin: auto; margin-bottom: 10px;">
+                                                <video controls autoplay muted loop playsinline style="width: 80%; margin: auto; margin-bottom: 10px;">
                                                     <source src="<?php echo esc_url($featured_video_url); ?>" type="video/mp4">
                                                     Your browser does not support the video tag.
                                                 </video>
