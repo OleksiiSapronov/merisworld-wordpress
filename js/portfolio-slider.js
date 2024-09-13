@@ -152,7 +152,7 @@ jQuery(document).ready(function ($) {
 
         // Random rotation between -5 and +5 degrees
         const randomRotation = (-1) ** i * getRandomRotation(i * 2, i * 2 + 1);
-        backgroundDiv.style.transform = `rotate(${randomRotation}deg)`;
+        backgroundDiv.style.transform = `rotate(${randomRotation}deg) translateY(-25px)`;
 
         // Append the new background div before the current target div
         targetDiv.parentNode.insertBefore(backgroundDiv, targetDiv);
