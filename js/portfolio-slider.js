@@ -96,10 +96,13 @@ jQuery(document).ready(function ($) {
       slideWidth = viewportHeight * 0.6 * aspectRatio;
       document.getElementById("main").style.height =
         viewportHeight - 50 - 47 + "px";
+      document.getElementsByClassName("post-content")[0].style.marginTop = 0;
     } else {
       slideWidth = viewportHeight * 0.8 * aspectRatio;
       document.getElementById("main").style.height =
         viewportHeight - 100 - 47 + "px";
+      document.getElementsByClassName("post-content")[0].style.marginTop =
+        3 + "%";
     }
 
     // Number of slides that can fit on the screen in landscape mode
