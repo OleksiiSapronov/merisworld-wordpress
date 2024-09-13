@@ -97,7 +97,7 @@ jQuery(document).ready(function ($) {
       document.getElementById("main").style.height =
         viewportHeight - 50 - 47 + "px";
     } else {
-      slideWidth = viewportHeight * aspectRatio;
+      slideWidth = viewportHeight * 0.8 * aspectRatio;
       document.getElementById("main").style.height =
         viewportHeight - 100 - 47 + "px";
     }
