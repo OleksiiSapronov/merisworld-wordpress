@@ -16,6 +16,9 @@ html {
     padding: 30px !important;
 }
 
+.post-content {
+    margin-top: 3%;
+}
 .target-div {
     border: 3px solid #999999;
     padding: 5%;

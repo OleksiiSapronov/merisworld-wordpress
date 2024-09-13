@@ -103,8 +103,9 @@ jQuery(document).ready(function ($) {
     }
 
     // Number of slides that can fit on the screen in landscape mode
-    let slidesToShow = Math.floor(viewportWidth / slideWidth);
-
+    let slidesToShow = Math.round(viewportWidth / slideWidth);
+    console.log(viewportWidth / slideWidth);
+    console.log(slidesToShow);
     if (slidesToShow < 1) slidesToShow = 1; // At least 1 slide should be shown
     if (slidesToShow > 5) slidesToShow = 5;
     // Update Slick Slider options dynamically
