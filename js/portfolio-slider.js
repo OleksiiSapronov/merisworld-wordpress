@@ -33,9 +33,19 @@ jQuery(document).ready(function ($) {
     }
   });
 
+  // Add a touchend event specifically for the <a> elements
+  $(".portfolio-slide a").on("touchend click", function (e) {
+    e.stopPropagation(); // Prevent the event from bubbling up to the .portfolio-slide
+    // Allow the default action for the link (navigation, etc.)
+  });
+
   // Detect end of drag and decide whether to trigger click event
   $(".portfolio-slide").on("mouseup touchend", function (e) {
     if (!isDragging) {
+      // Ensure that the click/tap is not on an <a> element
+      if ($(e.target).is("a")) {
+        return; // Skip the toggle behavior if <a> was clicked
+      }
       // Toggle between category info and portfolio info
       $(this).find(".portfolio-info").toggle();
     }
