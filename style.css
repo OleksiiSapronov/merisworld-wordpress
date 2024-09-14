@@ -48,7 +48,7 @@ html {
     transition: all 0.5s ease-in-out;
     line-height: 1.2;
     padding: 3% 2% 1% 1%;
-    aspect-ratio: 2 / 3.1; /* Aspect ratio maintained */
+    aspect-ratio: 2 / 3.1;
 }
 
 .fusion-flex-container .fusion-row .fusion-flex-column {
