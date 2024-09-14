@@ -187,6 +187,20 @@ jQuery(document).ready(function ($) {
 
   initialBackgroundDivsForAllTargets();
 
+  // Get all close buttons
+  const closeButtons = document.querySelectorAll(".close");
+
+  // Function to trigger resize event
+  function triggerResizeEvent() {
+    // Trigger the resize event
+    window.dispatchEvent(new Event("resize"));
+  }
+
+  // Add event listener to each close button
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", triggerResizeEvent);
+  });
+
   // Update slide dimensions and reinitialize on window resize
   $(window).on("resize", function () {
     updateSlideDimensions();
