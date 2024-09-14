@@ -129,11 +129,23 @@ jQuery(document).ready(function ($) {
 
   // Function to create 3 background divs for each target div and rotate them
   function resizeBackgroundDivsForAllTargets() {
+    const slideDiv = document.querySelector(".portfolio-slide");
+    const ratio = 2 / 3.1;
+
+    const slideWidth = slideDiv.offsetWidth;
+    const slideHeight = slideWidth / ratio;
+
+    const slideDivs = document.querySelectorAll(".portfolio-slide");
+
+    slideDivs.forEach((slide) => {
+      slide.style.height = `${slideHeight}px`;
+    });
+
     const targetDiv = document.querySelector(".target-div"); // Select all target divs
     // Get the width and height of the current target div
 
     const targetWidth = targetDiv.offsetWidth;
-    const targetHeight = targetDiv.offsetHeight;
+    const targetHeight = targetWidth / ratio;
 
     const backgroundDivs = document.querySelectorAll(".background-div"); // Select all target divs
 
