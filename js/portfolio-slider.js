@@ -102,7 +102,7 @@ jQuery(document).ready(function ($) {
 
     const aspectRatio = 2 / 3.1; // Adjust based on desired aspect ratio
     let slideWidth;
-    if (viewportWidth > viewportHeight && viewportWidth <= 1024) {
+    if (viewportWidth > viewportHeight && viewportWidth <= 950) {
       slideWidth = viewportHeight * 0.6 * aspectRatio;
       document.getElementById("main").style.height =
         viewportHeight - 50 - 47 + "px";
