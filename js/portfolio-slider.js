@@ -107,6 +107,10 @@ jQuery(document).ready(function ($) {
       document.getElementById("main").style.height =
         viewportHeight - 50 - 47 + "px";
       document.getElementsByClassName("post-content")[0].style.marginTop = 0;
+    } else if (viewportWidth < viewportHeight && viewportWidth <= 950) {
+      slideWidth = viewportHeight * 0.8 * aspectRatio;
+      document.getElementById("main").style.height =
+        viewportHeight - 100 - 47 + "px";
     } else {
       slideWidth = viewportHeight * 0.8 * aspectRatio;
       document.getElementById("main").style.height =
@@ -201,10 +205,87 @@ jQuery(document).ready(function ($) {
     button.addEventListener("click", triggerResizeEvent);
   });
 
+  function updateFontSizeBySlideWidth() {
+    const div = document.getElementsByClassName("portfolio-slide")[0];
+
+    // Adjust the font size based on the width of the div
+    const divWidth = div.offsetWidth;
+    if (divWidth <= 300) {
+      const cateDivs = document.querySelectorAll(".cate_desc_font");
+      cateDivs.forEach((cateDiv) => {
+        cateDiv.style.fontSize = "12px";
+      });
+      const titleDivs = document.querySelectorAll(".port_title");
+      titleDivs.forEach((titleDiv) => {
+        titleDiv.style.fontSize = "10px";
+      });
+      const desc1Divs = document.querySelectorAll(".port_description1");
+      desc1Divs.forEach((desc1Div) => {
+        desc1Div.style.fontSize = "8px";
+      });
+      const desc2Divs = document.querySelectorAll(".port_description2");
+      desc2Divs.forEach((desc2Div) => {
+        desc2Div.style.fontSize = "8px";
+      });
+    } else if (divWidth <= 400) {
+      const cateDivs = document.querySelectorAll(".cate_desc_font");
+      cateDivs.forEach((cateDiv) => {
+        cateDiv.style.fontSize = "14px";
+      });
+      const titleDivs = document.querySelectorAll(".port_title");
+      titleDivs.forEach((titleDiv) => {
+        titleDiv.style.fontSize = "12px";
+      });
+      const desc1Divs = document.querySelectorAll(".port_description1");
+      desc1Divs.forEach((desc1Div) => {
+        desc1Div.style.fontSize = "10px";
+      });
+      const desc2Divs = document.querySelectorAll(".port_description2");
+      desc2Divs.forEach((desc2Div) => {
+        desc2Div.style.fontSize = "10px";
+      });
+    } else if (divWidth <= 500) {
+      const cateDivs = document.querySelectorAll(".cate_desc_font");
+      cateDivs.forEach((cateDiv) => {
+        cateDiv.style.fontSize = "16px";
+      });
+      const titleDivs = document.querySelectorAll(".port_title");
+      titleDivs.forEach((titleDiv) => {
+        titleDiv.style.fontSize = "14px";
+      });
+      const desc1Divs = document.querySelectorAll(".port_description1");
+      desc1Divs.forEach((desc1Div) => {
+        desc1Div.style.fontSize = "12px";
+      });
+      const desc2Divs = document.querySelectorAll(".port_description2");
+      desc2Divs.forEach((desc2Div) => {
+        desc2Div.style.fontSize = "12px";
+      });
+    } else if (divWidth <= 600) {
+      const cateDivs = document.querySelectorAll(".cate_desc_font");
+      cateDivs.forEach((cateDiv) => {
+        cateDiv.style.fontSize = "18px";
+      });
+      const titleDivs = document.querySelectorAll(".port_title");
+      titleDivs.forEach((titleDiv) => {
+        titleDiv.style.fontSize = "16px";
+      });
+      const desc1Divs = document.querySelectorAll(".port_description1");
+      desc1Divs.forEach((desc1Div) => {
+        desc1Div.style.fontSize = "14px";
+      });
+      const desc2Divs = document.querySelectorAll(".port_description2");
+      desc2Divs.forEach((desc2Div) => {
+        desc2Div.style.fontSize = "14px";
+      });
+    }
+  }
+
   // Update slide dimensions and reinitialize on window resize
   $(window).on("resize", function () {
     updateSlideDimensions();
     $(".portfolio-slider")[0].slick.refresh();
+    updateFontSizeBySlideWidth();
     resizeBackgroundDivsForAllTargets();
   });
 });
