@@ -210,7 +210,24 @@ jQuery(document).ready(function ($) {
 
     // Adjust the font size based on the width of the div
     const divWidth = div.offsetWidth;
-    if (divWidth <= 300) {
+    if (divWidth <= 200) {
+      const cateDivs = document.querySelectorAll(".cate_desc_font");
+      cateDivs.forEach((cateDiv) => {
+        cateDiv.style.fontSize = "10px";
+      });
+      const titleDivs = document.querySelectorAll(".port_title");
+      titleDivs.forEach((titleDiv) => {
+        titleDiv.style.fontSize = "10px";
+      });
+      const desc1Divs = document.querySelectorAll(".port_description1");
+      desc1Divs.forEach((desc1Div) => {
+        desc1Div.style.fontSize = "8px";
+      });
+      const desc2Divs = document.querySelectorAll(".port_description2");
+      desc2Divs.forEach((desc2Div) => {
+        desc2Div.style.fontSize = "8px";
+      });
+    } else if (divWidth <= 300) {
       const cateDivs = document.querySelectorAll(".cate_desc_font");
       cateDivs.forEach((cateDiv) => {
         cateDiv.style.fontSize = "12px";
