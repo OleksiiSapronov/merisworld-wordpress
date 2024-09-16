@@ -110,7 +110,7 @@ jQuery(document).ready(function ($) {
     } else if (viewportWidth < viewportHeight && viewportWidth <= 950) {
       slideWidth = viewportHeight * 0.8 * aspectRatio;
       document.getElementById("main").style.height =
-        viewportHeight - 100 - 47 + "px";
+        viewportHeight - 50 - 47 + "px";
     } else {
       slideWidth = viewportHeight * 0.8 * aspectRatio;
       document.getElementById("main").style.height =
