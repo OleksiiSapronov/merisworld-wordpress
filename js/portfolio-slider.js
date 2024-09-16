@@ -105,16 +105,16 @@ jQuery(document).ready(function ($) {
     if (viewportWidth > viewportHeight && viewportWidth <= 950) {
       slideWidth = viewportHeight * 0.6 * aspectRatio;
       document.getElementById("main").style.height =
-        viewportHeight - 50 - 47 + "px";
+        viewportHeight - 50 - 47 + "px !important";
       document.getElementsByClassName("post-content")[0].style.marginTop = 0;
     } else if (viewportWidth < viewportHeight && viewportWidth <= 950) {
       slideWidth = viewportHeight * 0.8 * aspectRatio;
       document.getElementById("main").style.height =
-        viewportHeight - 50 - 47 + "px";
+        viewportHeight - 50 - 47 + "px !important";
     } else {
       slideWidth = viewportHeight * 0.8 * aspectRatio;
       document.getElementById("main").style.height =
-        viewportHeight - 100 - 47 + "px";
+        viewportHeight - 100 - 47 + "px !important";
       document.getElementsByClassName("post-content")[0].style.marginTop = "3%";
     }
 
