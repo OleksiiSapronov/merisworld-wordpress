@@ -48,7 +48,10 @@ html {
     transition: all 0.5s ease-in-out;
     line-height: 1.2;
     padding: 3% 2% 1% 1%;
-    height: 800px;
+}
+
+.slick-list {
+    height: unset !important;
 }
 
 .fusion-flex-container .fusion-row .fusion-flex-column {
