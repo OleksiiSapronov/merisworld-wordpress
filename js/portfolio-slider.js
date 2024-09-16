@@ -115,16 +115,13 @@ jQuery(document).ready(function ($) {
       slideWidth = viewportHeight * 0.8 * aspectRatio;
       document.getElementById("main").style.height =
         viewportHeight - 100 - 47 + "px";
-      document.getElementsByClassName("post-content")[0].style.marginTop =
-        3 + "%";
+      document.getElementsByClassName("post-content")[0].style.marginTop = "3%";
     }
 
-    // Number of slides that can fit on the screen in landscape mode
     let slidesToShow = Math.round(viewportWidth / slideWidth);
-
-    if (slidesToShow < 1) slidesToShow = 1; // At least 1 slide should be shown
+    if (slidesToShow < 1) slidesToShow = 1;
     if (slidesToShow > 5) slidesToShow = 5;
-    // Update Slick Slider options dynamically
+
     $(".portfolio-slider").slick(
       "slickSetOption",
       {
@@ -155,21 +152,16 @@ jQuery(document).ready(function ($) {
       slide.style.height = `${slideHeight}px`;
     });
 
-    const targetDiv = document.querySelector(".target-div"); // Select all target divs
-    // Get the width and height of the current target div
-
+    const targetDiv = document.querySelector(".target-div");
     const targetWidth = targetDiv.offsetWidth;
     const targetHeight = targetWidth / ratio;
 
-    const backgroundDivs = document.querySelectorAll(".background-div"); // Select all target divs
-
+    const backgroundDivs = document.querySelectorAll(".background-div");
     backgroundDivs.forEach((backgroundDiv) => {
-      // Set the width and height to match the target div
       backgroundDiv.style.width = `${targetWidth}px`;
       backgroundDiv.style.height = `${targetHeight}px`;
     });
   }
-
   function initialBackgroundDivsForAllTargets() {
     const targetDivs = document.querySelectorAll(".target-div"); // Select all target divs
 
@@ -207,101 +199,38 @@ jQuery(document).ready(function ($) {
 
   function updateFontSizeBySlideWidth() {
     const div = document.getElementsByClassName("portfolio-slide")[0];
-
-    // Adjust the font size based on the width of the div
     const divWidth = div.offsetWidth;
+
+    let fontSize;
     if (divWidth <= 200) {
-      const cateDivs = document.querySelectorAll(".cate_desc_font");
-      cateDivs.forEach((cateDiv) => {
-        cateDiv.style.fontSize = "10px";
-      });
-      const titleDivs = document.querySelectorAll(".port_title");
-      titleDivs.forEach((titleDiv) => {
-        titleDiv.style.fontSize = "10px";
-      });
-      const desc1Divs = document.querySelectorAll(".port_description1");
-      desc1Divs.forEach((desc1Div) => {
-        desc1Div.style.fontSize = "8px";
-      });
-      const desc2Divs = document.querySelectorAll(".port_description2");
-      desc2Divs.forEach((desc2Div) => {
-        desc2Div.style.fontSize = "8px";
-      });
+      fontSize = "10px";
     } else if (divWidth <= 300) {
-      const cateDivs = document.querySelectorAll(".cate_desc_font");
-      cateDivs.forEach((cateDiv) => {
-        cateDiv.style.fontSize = "12px";
-      });
-      const titleDivs = document.querySelectorAll(".port_title");
-      titleDivs.forEach((titleDiv) => {
-        titleDiv.style.fontSize = "10px";
-      });
-      const desc1Divs = document.querySelectorAll(".port_description1");
-      desc1Divs.forEach((desc1Div) => {
-        desc1Div.style.fontSize = "8px";
-      });
-      const desc2Divs = document.querySelectorAll(".port_description2");
-      desc2Divs.forEach((desc2Div) => {
-        desc2Div.style.fontSize = "8px";
-      });
+      fontSize = "12px";
     } else if (divWidth <= 400) {
-      const cateDivs = document.querySelectorAll(".cate_desc_font");
-      cateDivs.forEach((cateDiv) => {
-        cateDiv.style.fontSize = "14px";
-      });
-      const titleDivs = document.querySelectorAll(".port_title");
-      titleDivs.forEach((titleDiv) => {
-        titleDiv.style.fontSize = "12px";
-      });
-      const desc1Divs = document.querySelectorAll(".port_description1");
-      desc1Divs.forEach((desc1Div) => {
-        desc1Div.style.fontSize = "10px";
-      });
-      const desc2Divs = document.querySelectorAll(".port_description2");
-      desc2Divs.forEach((desc2Div) => {
-        desc2Div.style.fontSize = "10px";
-      });
+      fontSize = "14px";
     } else if (divWidth <= 500) {
-      const cateDivs = document.querySelectorAll(".cate_desc_font");
-      cateDivs.forEach((cateDiv) => {
-        cateDiv.style.fontSize = "16px";
-      });
-      const titleDivs = document.querySelectorAll(".port_title");
-      titleDivs.forEach((titleDiv) => {
-        titleDiv.style.fontSize = "14px";
-      });
-      const desc1Divs = document.querySelectorAll(".port_description1");
-      desc1Divs.forEach((desc1Div) => {
-        desc1Div.style.fontSize = "12px";
-      });
-      const desc2Divs = document.querySelectorAll(".port_description2");
-      desc2Divs.forEach((desc2Div) => {
-        desc2Div.style.fontSize = "12px";
-      });
+      fontSize = "16px";
     } else if (divWidth <= 600) {
-      const cateDivs = document.querySelectorAll(".cate_desc_font");
-      cateDivs.forEach((cateDiv) => {
-        cateDiv.style.fontSize = "18px";
-      });
-      const titleDivs = document.querySelectorAll(".port_title");
-      titleDivs.forEach((titleDiv) => {
-        titleDiv.style.fontSize = "16px";
-      });
-      const desc1Divs = document.querySelectorAll(".port_description1");
-      desc1Divs.forEach((desc1Div) => {
-        desc1Div.style.fontSize = "14px";
-      });
-      const desc2Divs = document.querySelectorAll(".port_description2");
-      desc2Divs.forEach((desc2Div) => {
-        desc2Div.style.fontSize = "14px";
-      });
+      fontSize = "18px";
     }
+
+    const cateDivs = document.querySelectorAll(".cate_desc_font");
+    cateDivs.forEach((cateDiv) => (cateDiv.style.fontSize = fontSize));
+
+    const titleDivs = document.querySelectorAll(".port_title");
+    titleDivs.forEach((titleDiv) => (titleDiv.style.fontSize = fontSize));
+
+    const desc1Divs = document.querySelectorAll(".port_description1");
+    desc1Divs.forEach((desc1Div) => (desc1Div.style.fontSize = fontSize));
+
+    const desc2Divs = document.querySelectorAll(".port_description2");
+    desc2Divs.forEach((desc2Div) => (desc2Div.style.fontSize = fontSize));
   }
 
   // Update slide dimensions and reinitialize on window resize
   $(window).on("resize", function () {
-    updateSlideDimensions();
     $(".portfolio-slider")[0].slick.refresh();
+    updateSlideDimensions();
     updateFontSizeBySlideWidth();
     resizeBackgroundDivsForAllTargets();
   });
