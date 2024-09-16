@@ -9,6 +9,7 @@ Text Domain: Avada
 */
 html {
     scrollbar-width: none;
+    -webkit-text-size-adjust: 100%; /* Prevents text from automatically adjusting size */
 }
 
 #main {
@@ -157,5 +158,23 @@ div.fusion-modal-content * {
     
     .fusion-logo-link img {
         height: 50px !important;
+    }
+}
+
+@media only screen and (max-width: 950px) and (orientation: landscape) {
+    .cate_desc_font {
+        font-size: 8px !important;
+    }
+
+    .port_title {
+        font-size: 8px !important;
+    }
+
+    .port_description1 {
+        font-size: 6px !important;
+    }
+
+    .port_description2 {
+        font-size: 6px !important;
     }
 }
