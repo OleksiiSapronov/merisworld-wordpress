@@ -156,3 +156,48 @@ function custom_portfolio_slider_scripts() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [] );
 }
 add_action('wp_enqueue_scripts', 'custom_portfolio_slider_scripts');
+
+function save_user_data() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'subscribers';
+
+    // Check if the table exists
+    if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+        // If the table doesn't exist, create it
+        $charset_collate = $wpdb->get_charset_collate();
+        $sql = "CREATE TABLE $table_name (
+            id INT NOT NULL AUTO_INCREMENT,
+            first_name VARCHAR(255) NOT NULL,
+            last_name VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            PRIMARY KEY (id)
+        ) $charset_collate;";
+
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        dbDelta($sql);
+    }
+
+    // Sanitize and retrieve form data
+    $first_name = sanitize_text_field($_POST['first-name']);
+    $last_name = sanitize_text_field($_POST['last-name']);
+    $email = sanitize_email($_POST['email']);
+
+    // Insert data into the WordPress database
+    $data = array(
+        'first_name' => $first_name,
+        'last_name' => $last_name,
+        'email' => $email,
+        'created_at' => current_time('mysql'),
+    );
+
+    // Check if the data was inserted successfully
+    if ($wpdb->insert($table_name, $data)) {
+        wp_send_json_success(['message' => 'Thank you for subscribing!']);
+    } else {
+        wp_send_json_error(['message' => 'There was an error saving your data.']);
+    }
+}
+
+add_action('wp_ajax_save_user_data', 'save_user_data');
+add_action('wp_ajax_nopriv_save_user_data', 'save_user_data');
