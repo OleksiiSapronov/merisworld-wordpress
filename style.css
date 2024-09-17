@@ -142,6 +142,12 @@ div.fusion-modal-content * {
     margin: 0 !important;
 }
 
+.menu-text {
+    font-family: 'Anonymous Pro';
+    font-size: 20px;
+    font-weight: bold;
+}
+
 /* Landscape mode for mobile phones */
 @media only screen and (max-width: 950px) {
     .portfolio-slide {
