@@ -134,6 +134,15 @@ div.fusion-modal-content * {
     font-family: 'Anonymous Pro' !important;
 }
 
+.modal-content {
+    overflow-x: hidden;
+}
+
+.modal-content a {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
 .fusion-social-network-icon {
     margin: 10px !important;
 }

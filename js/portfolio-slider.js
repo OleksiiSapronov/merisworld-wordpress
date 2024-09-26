@@ -103,15 +103,21 @@ jQuery(document).ready(function ($) {
     const aspectRatio = 2 / 3.1; // Adjust based on desired aspect ratio
     let slideWidth;
     if (viewportWidth > viewportHeight && viewportWidth <= 950) {
+      console.log("viewportWidth111", viewportWidth);
+      console.log("viewportHeight111", viewportHeight);
       slideWidth = viewportHeight * 0.6 * aspectRatio;
       document.getElementById("main").style.height =
         viewportHeight - 50 - 47 + "px";
       document.getElementsByClassName("post-content")[0].style.marginTop = 0;
     } else if (viewportWidth < viewportHeight && viewportWidth <= 950) {
+      console.log("viewportWidth222", viewportWidth);
+      console.log("viewportHeight222", viewportHeight);
       slideWidth = viewportHeight * 0.8 * aspectRatio;
       document.getElementById("main").style.height =
         viewportHeight - 50 - 47 + "px";
     } else {
+      console.log("viewportWidth333", viewportWidth);
+      console.log("viewportHeight333", viewportHeight);
       slideWidth = viewportHeight * 0.8 * aspectRatio;
       document.getElementById("main").style.height =
         viewportHeight - 100 - 47 + "px";
@@ -145,6 +151,9 @@ jQuery(document).ready(function ($) {
 
     const slideWidth = slideDiv.offsetWidth;
     const slideHeight = slideWidth / ratio;
+
+    console.log("slideWidth", slideWidth);
+    console.log("slideHeight", slideHeight);
 
     const slideDivs = document.querySelectorAll(".portfolio-slide");
 
@@ -292,8 +301,9 @@ jQuery(document).ready(function ($) {
 
   // Update slide dimensions and reinitialize on window resize
   $(window).on("resize", function () {
-    $(".portfolio-slider")[0].slick.refresh();
+    console.log("Oleksii");
     updateSlideDimensions();
+    $(".portfolio-slider")[0].slick.refresh();
     updateFontSizeBySlideWidth();
     resizeBackgroundDivsForAllTargets();
   });
