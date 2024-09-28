@@ -297,4 +297,45 @@ jQuery(document).ready(function ($) {
     updateFontSizeBySlideWidth();
     resizeBackgroundDivsForAllTargets();
   });
+
+  // Add the modal observer logic at the end of the document ready function
+  document.addEventListener("DOMContentLoaded", function () {
+    const modals = document.querySelectorAll(".fusion-modal.modal.fade");
+
+    // Helper function to check if all modals are hidden
+    function checkIfAllModalsHidden() {
+      let allHidden = true;
+      modals.forEach((modal) => {
+        if (window.getComputedStyle(modal).display !== "none") {
+          allHidden = false;
+        }
+      });
+
+      if (allHidden) {
+        console.log("All modals are now hidden");
+        // Insert your logic here when all modals are hidden
+      }
+    }
+
+    // MutationObserver to watch for style changes
+    const observerCallback = (mutationsList) => {
+      mutationsList.forEach((mutation) => {
+        if (mutation.attributeName === "style") {
+          checkIfAllModalsHidden();
+        }
+      });
+    };
+
+    const observerOptions = { attributes: true, attributeFilter: ["style"] };
+    modals.forEach((modal) => {
+      const observer = new MutationObserver(observerCallback);
+      observer.observe(modal, observerOptions);
+    });
+
+    // Monitor any random event and check if all modals are hidden
+    const eventsToMonitor = ["click", "keydown"];
+    eventsToMonitor.forEach((eventName) => {
+      document.addEventListener(eventName, checkIfAllModalsHidden);
+    });
+  });
 });
