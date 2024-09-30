@@ -201,3 +201,38 @@ function save_user_data() {
 
 add_action('wp_ajax_save_user_data', 'save_user_data');
 add_action('wp_ajax_nopriv_save_user_data', 'save_user_data');
+
+function remove_user_data() {
+    // Get the data from the request
+    $first_name = isset($_POST['first-name']) ? sanitize_text_field($_POST['first-name']) : '';
+    $last_name = isset($_POST['last-name']) ? sanitize_text_field($_POST['last-name']) : '';
+    $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
+
+    // Check if the user exists in the database (assumes you're using a custom table)
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'subscribers'; // Update with your actual table name
+
+    $user = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE first_name = %s AND last_name = %s AND email = %s", $first_name, $last_name, $email));
+    
+    if ($user) {
+        // User found, proceed to delete
+        $deleted = $wpdb->delete($table_name, array('id' => $user->id)); // Assuming 'id' is your primary key
+
+        if ($deleted) {
+            // Successful deletion
+            wp_send_json_success(['message' => 'User unsubscribed successfully.']);
+        } else {
+            // Deletion failed
+            wp_send_json_error(['message' => 'There was an error removing the user from the database.']);
+        }
+    } else {
+        // User not found
+        wp_send_json_error(['message' => 'No matching user found. Please check the provided details.']);
+    }
+
+    // Always die in AJAX function
+    wp_die();
+}
+
+add_action('wp_ajax_remove_user_data', 'remove_user_data');
+add_action('wp_ajax_nopriv_remove_user_data', 'remove_user_data');
