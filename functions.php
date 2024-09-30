@@ -171,7 +171,8 @@ function save_user_data() {
             last_name VARCHAR(255) NOT NULL,
             email VARCHAR(255) NOT NULL,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            PRIMARY KEY (id)
+            PRIMARY KEY (id),
+            UNIQUE KEY unique_email (email)
         ) $charset_collate;";
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
@@ -182,6 +183,14 @@ function save_user_data() {
     $first_name = sanitize_text_field($_POST['first-name']);
     $last_name = sanitize_text_field($_POST['last-name']);
     $email = sanitize_email($_POST['email']);
+
+    // Check if email already exists in the database
+    $existing_email = $wpdb->get_var($wpdb->prepare("SELECT email FROM $table_name WHERE email = %s", $email));
+
+    if ($existing_email) {
+        wp_send_json_error(['message' => 'This email is already subscribed.']);
+        return;
+    }
 
     // Insert data into the WordPress database
     $data = array(
