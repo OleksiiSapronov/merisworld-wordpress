@@ -229,6 +229,12 @@ function remove_user_data() {
 
         if ($deleted) {
             // Successful deletion
+            $to = $email;
+            $subject = "Unsubscription Confirmation";
+            $message = "You have successfully unsubscribed from our mailing list.";
+            $headers = 'From: www.meris.world <no-reply@www.meris.com>' . "\r\n";
+            wp_mail($to, $subject, $message, $headers);
+
             wp_send_json_success(['message' => 'User unsubscribed successfully.']);
         } else {
             // Deletion failed
