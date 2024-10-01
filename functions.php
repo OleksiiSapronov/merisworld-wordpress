@@ -202,6 +202,19 @@ function save_user_data() {
 
     // Check if the data was inserted successfully
     if ($wpdb->insert($table_name, $data)) {
+        $to = $email;
+        $subject = "Subscription Confirmation";
+        $message = "You have successfully subscribed to our mailing list.";
+        $headers = 'From: Meris.World' . "\r\n";
+        wp_mail($to, $subject, $message, $headers);
+
+        // Send notification to the site admin
+        $to1 = 'info@meris.world';
+        $subject1 = "Subscription Confirmation";
+        $message1 = "$first_name $last_name has successfully subscribed to your mailing list.";
+        $headers1 = 'From: Meris.World' . "\r\n";
+        wp_mail($to1, $subject1, $message1, $headers1);
+
         wp_send_json_success(['message' => 'Thank you for subscribing!']);
     } else {
         wp_send_json_error(['message' => 'There was an error saving your data.']);
@@ -234,6 +247,12 @@ function remove_user_data() {
             $message = "You have successfully unsubscribed from our mailing list.";
             $headers = 'From: Meris.World' . "\r\n";
             wp_mail($to, $subject, $message, $headers);
+
+            $to1 = 'info@meris.world';
+            $subject1 = "Unsubscription Confirmation";
+            $message1 = "$first_name $last_name has successfully unsubscribed from your mailing list.";
+            $headers1 = 'From: Meris.World' . "\r\n";
+            wp_mail($to1, $subject1, $message1, $headers1);
 
             wp_send_json_success(['message' => 'User unsubscribed successfully.']);
         } else {
