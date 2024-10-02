@@ -209,6 +209,17 @@ function save_user_data() {
         $headers = 'From: Meris.World' . "\r\n";
         wp_mail($to, $subject, $message, $headers);
 
+        // Get the current WordPress time in 'Y-m-d H:i:s' format (server's timezone)
+        $current_time = current_time('Y-m-d H:i:s');
+
+        // Create a DateTime object from the current time in the site's timezone
+        $date = new DateTime($current_time, new DateTimeZone(wp_timezone_string()));
+
+        // Set the timezone to PDT (America/Los_Angeles)
+        $date->setTimezone(new DateTimeZone('America/Los_Angeles'));
+
+        // Format the date and time as 'DD-MMM-YYYY, NN:NN (GMT)'
+        $pdt_time = $date->format('d-M-Y, H:i (T)');
         // Send notification to the site admin
         $to1 = 'info@meris.world';
         $subject1 = "New Subscriber for Meris.World!";
@@ -226,7 +237,7 @@ function save_user_data() {
                 <li><strong>First Name:</strong> $first_name</li>
                 <li><strong>Last Name:</strong> $last_name</li>
                 <li><strong>Email:</strong> $email</li>
-                <li><strong>Date &amp; Time of subscription:</strong> $date_time</li>
+                <li><strong>Date &amp; Time of subscription:</strong> $pdt_time</li>
             </ul>
             <p>Warm regards,</p>
             <p>Meris.World</p>
@@ -274,6 +285,17 @@ function remove_user_data() {
             $headers = 'From: Meris.World' . "\r\n";
             wp_mail($to, $subject, $message, $headers);
 
+            // Get the current WordPress time in 'Y-m-d H:i:s' format (server's timezone)
+            $current_time = current_time('Y-m-d H:i:s');
+
+            // Create a DateTime object from the current time in the site's timezone
+            $date = new DateTime($current_time, new DateTimeZone(wp_timezone_string()));
+
+            // Set the timezone to PDT (America/Los_Angeles)
+            $date->setTimezone(new DateTimeZone('America/Los_Angeles'));
+
+            // Format the date and time as 'DD-MMM-YYYY, NN:NN (GMT)'
+            $pdt_time = $date->format('d-M-Y, H:i (T)');
             // Send notification to the site admin
             $to1 = 'info@meris.world';
             $subject1 = "Lost subscriber for Meris.World!";
@@ -291,7 +313,7 @@ function remove_user_data() {
                     <li><strong>First Name:</strong> $first_name</li>
                     <li><strong>Last Name:</strong> $last_name</li>
                     <li><strong>Email:</strong> $email</li>
-                    <li><strong>Date &amp; Time of subscription:</strong> $date_time</li>
+                    <li><strong>Date &amp; Time of subscription:</strong> $pdt_time</li>
                 </ul>
                 <p>Warm regards,</p>
                 <p>Meris.World</p>
