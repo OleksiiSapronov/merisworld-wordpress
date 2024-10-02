@@ -183,6 +183,7 @@ function save_user_data() {
     $first_name = sanitize_text_field($_POST['first-name']);
     $last_name = sanitize_text_field($_POST['last-name']);
     $email = sanitize_email($_POST['email']);
+    $date_time = current_time('mysql');
 
     // Check if email already exists in the database
     $existing_email = $wpdb->get_var($wpdb->prepare("SELECT email FROM $table_name WHERE email = %s", $email));
@@ -197,22 +198,46 @@ function save_user_data() {
         'first_name' => $first_name,
         'last_name' => $last_name,
         'email' => $email,
-        'created_at' => current_time('mysql'),
+        'created_at' => $date_time,
     );
 
     // Check if the data was inserted successfully
     if ($wpdb->insert($table_name, $data)) {
         $to = $email;
-        $subject = "Subscription Confirmation";
-        $message = "You have successfully subscribed to our mailing list.";
+        $subject = "Welcome to Meris.World!";
+        $message = "Hi $first_name," . "\r\n" . "\r\n" . "You’ve unlocked a world of adventures and secret finds! I’m thrilled to have you in the Meris.World community. Get ready for exclusive insights and updates straight to your inbox. From hidden gems to unforgettable experiences, it’s going to be a ride!" . "\r\n" . "Stay curious and keep exploring!" . "\r\n" . "\r\n" . "Meri";
         $headers = 'From: Meris.World' . "\r\n";
         wp_mail($to, $subject, $message, $headers);
 
         // Send notification to the site admin
         $to1 = 'info@meris.world';
-        $subject1 = "Subscription Confirmation";
-        $message1 = "$first_name $last_name has successfully subscribed to your mailing list.";
-        $headers1 = 'From: Meris.World' . "\r\n";
+        $subject1 = "New Subscriber for Meris.World!";
+
+        // Construct the message with HTML formatting
+        $message1 = "
+            <html>
+            <head>
+            <title>New Subscriber for Meris.World!</title>
+            </head>
+            <body>
+            <p>Great news! You have a new subscriber on Meris.World</p>
+            <p>Here are the details:</p>
+            <ul>
+                <li><strong>First Name:</strong> $first_name</li>
+                <li><strong>Last Name:</strong> $last_name</li>
+                <li><strong>Email:</strong> $email</li>
+                <li><strong>Date &amp; Time of subscription:</strong> $date_time</li>
+            </ul>
+            <p>Warm regards,</p>
+            <p>Meris.World</p>
+            </body>
+            </html>
+        ";
+
+        // Set the headers to allow HTML content
+        $headers1 = array('Content-Type: text/html; charset=UTF-8', 'From: Meris.World' . "\r\n");
+
+        // Send the email
         wp_mail($to1, $subject1, $message1, $headers1);
 
         wp_send_json_success(['message' => 'Thank you for subscribing!']);
@@ -229,6 +254,7 @@ function remove_user_data() {
     $first_name = isset($_POST['first-name']) ? sanitize_text_field($_POST['first-name']) : '';
     $last_name = isset($_POST['last-name']) ? sanitize_text_field($_POST['last-name']) : '';
     $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
+    $date_time = current_time('mysql');
 
     // Check if the user exists in the database (assumes you're using a custom table)
     global $wpdb;
@@ -243,15 +269,40 @@ function remove_user_data() {
         if ($deleted) {
             // Successful deletion
             $to = $email;
-            $subject = "Unsubscription Confirmation";
-            $message = "You have successfully unsubscribed from our mailing list.";
+            $subject = "Sad to See You Go…";
+            $message = "Hi $first_name," . "\r\n" . "\r\n" . "You've successfully unsubscribed from Meris.World. I’m sorry to see you leave but I hope our paths cross again in the future." . "\r\n" . "Safe travels, wherever your journey takes you." . "\r\n" . "\r\n" . "Meri";
             $headers = 'From: Meris.World' . "\r\n";
             wp_mail($to, $subject, $message, $headers);
 
+            // Send notification to the site admin
             $to1 = 'info@meris.world';
-            $subject1 = "Unsubscription Confirmation";
-            $message1 = "$first_name $last_name has successfully unsubscribed from your mailing list.";
-            $headers1 = 'From: Meris.World' . "\r\n";
+            $subject1 = "Lost subscriber for Meris.World!";
+
+            // Construct the message with HTML formatting
+            $message1 = "
+                <html>
+                <head>
+                <title>Lost subscriber for Meris.World!</title>
+                </head>
+                <body>
+                <p>Sad news! You have lost a subscriber on Meris.World.</p>
+                <p>Here are the details:</p>
+                <ul>
+                    <li><strong>First Name:</strong> $first_name</li>
+                    <li><strong>Last Name:</strong> $last_name</li>
+                    <li><strong>Email:</strong> $email</li>
+                    <li><strong>Date &amp; Time of subscription:</strong> $date_time</li>
+                </ul>
+                <p>Warm regards,</p>
+                <p>Meris.World</p>
+                </body>
+                </html>
+            ";
+
+            // Set the headers to allow HTML content
+            $headers1 = array('Content-Type: text/html; charset=UTF-8', 'From: Meris.World' . "\r\n");
+
+            // Send the email
             wp_mail($to1, $subject1, $message1, $headers1);
 
             wp_send_json_success(['message' => 'User unsubscribed successfully.']);
